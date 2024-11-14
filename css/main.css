@@ -163,19 +163,29 @@ option {
 #popup-actions-modal {
   position: absolute;
   text-align: center;
-  top: 30%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%);
-  padding-top: 0px;
-  height: 85px;
-  width: 270px;
+  transform: translate(-50%, -50%);
+  padding-top: 10px; /* Add padding for a better fit */
+  height: auto; /* Set to auto for dynamic height based on content */
+  max-width: 90%; /* Ensures it fits within smaller screens */
+  width: 270px; /* Default width for larger screens */
   border-radius: 10px;
   background: #e8e8e8;
   animation-duration: 0.5s;
   animation-name: popin;
-  margin: 50px auto auto;
+  margin: 0; /* Remove unnecessary margins */
   opacity: 1;
   z-index: 99999;
+}
+
+/* Add a media query to adjust for smaller screens */
+@media (max-width: 600px) {
+  #popup-actions-modal {
+    padding: 5px 15px;
+    font-size: 0.9rem; /* Slightly smaller text for small screens */
+    height: auto; /* Allow height to adjust based on content */
+  }
 }
 
 #popup-actions-modal h4 {
@@ -257,49 +267,60 @@ option {
   display: none;
 }
 
-#close-screen {
-  background-color: black;
-  width: 100%;
-  display: flex;
-  height: 100%;
-  z-index: 999999999999999999999999999999999999999999;
-  align-items: center;
-  justify-content: center;
-}
-
 #close-screen-battery {
-  width: 80px;
-  height: 30px;
+  width: 20vw; /* 20% of the viewport width */
+  height: 7vw; /* Adjusts based on viewport width */
   border: 2px solid #fff;
   position: relative;
   border-radius: 5px;
 }
 
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  #close-screen-battery {
+    width: 60px; /* Fixed width for better control on small screens */
+    height: 24px; /* Proportionally smaller height */
+    border-radius: 4px; /* Slightly smaller border radius */
+  }
+}
+
 #close-screen-battery::before {
   position: absolute;
   content: '';
-  width: 10px;
+  width: 50%; /* 50% of the width of #close-screen-battery */
+  height: 80%; /* Scales with the parent element’s height */
   background: red;
-  /* 
-  battery full
-  width: 98%;
-  background: greenyellow; 
-  */
-  height: 24px;
-  top: 1px;
-  left: 1px;
+  top: 10%; /* Centers the element vertically */
+  left: 5%; /* Centers the element horizontally */
   border-radius: 2px;
 }
 
 #close-screen-battery::after {
   position: absolute;
   content: '';
-  width: 4px;
-  height: 15px;
+  width: 10%; /* Scales width based on parent */
+  height: 50%; /* Scales height based on parent */
   background: #fff;
-  right: -6px;
-  top: 5px;
+  right: -10%; /* Adjust for better positioning */
+  top: 20%; /* Centers the element vertically */
   border-radius: 2px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  #close-screen-battery::before {
+    width: 45%; /* Slightly smaller width for small screens */
+    height: 75%; /* Adjust height to fit */
+    top: 12%; /* Adjust positioning */
+    left: 5%;
+  }
+
+  #close-screen-battery::after {
+    width: 8%; /* Slightly smaller width */
+    height: 45%; /* Adjust height for fit */
+    right: -8%; /* Adjust position */
+    top: 22%;
+  }
 }
 
 .startup-page-header {
@@ -330,14 +351,24 @@ option {
 }
 
 #startScreen .logo {
-  top: 45%;
-  left: 37%;
+  top: 40%; /* Center the logo more vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center based on width and height */
   position: absolute;
-  width: 80px;
-  height: 70px;
+  width: 20vw; /* Scale width with viewport width */
+  height: 18vh; /* Scale height with viewport height */
   opacity: 1;
-  transition: ease all 0.3s;
+  transition: all 0.3s ease;
   z-index: 999999999;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  #startScreen .logo {
+    width: 30vw; /* Slightly larger for smaller screens */
+    height: 25vh;
+    top: 45%; /* Adjust position */
+  }
 }
 
 #startScreen .logo svg {
@@ -448,10 +479,18 @@ textarea {
 
 .gallery-item {
   margin-bottom: 4px;
-  height: 75px;
-  width: 75px;
+  width: 20vw; /* Scale with viewport width */
+  height: 20vw; /* Keep a square aspect ratio */
   overflow: hidden;
   background: black;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .gallery-item {
+    width: 25vw; /* Slightly larger for smaller screens */
+    height: 25vw; /* Keep square aspect ratio */
+  }
 }
 
 input[type='checkbox'].ios8-switch {
@@ -464,39 +503,46 @@ input[type='checkbox'].ios8-switch+label {
   line-height: 1.5em;
 }
 
+/* Responsive styles for the background (track) */
 input[type='checkbox'].ios8-switch+label:before {
   content: '';
   position: absolute;
   display: block;
   left: 0;
   top: 0;
-  width: 40px;
-  /* x*5 */
-  height: 24px;
-  /* x*3 */
-  border-radius: 16px;
-  /* x*2 */
+  width: 70%; /* Scales with the container width */
+  height: 60%; /* Scales with the container height */
+  border-radius: 50%; /* Adjust to be a smooth pill shape */
   background: #333;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
 
+/* Responsive styles for the thumb */
 input[type='checkbox'].ios8-switch+label:after {
   content: '';
   position: absolute;
   display: block;
-  left: 0px;
-  top: 0px;
-  width: 24px;
-  /* x*3 */
-  height: 24px;
-  /* x*3 */
-  border-radius: 16px;
-  /* x*2 */
+  left: 0;
+  top: 0;
+  width: 50%; /* Scales with the container width */
+  height: 100%; /* Matches the height of the background */
+  border-radius: 50%; /* Circular shape */
   background: #fff;
   border: 1px solid #d9d9d9;
-  -webkit-transition: all 0.3s;
   transition: all 0.3s;
+}
+
+/* Media query for small screens */
+@media (max-width: 600px) {
+  input[type='checkbox'].ios8-switch+label:before {
+    width: 60%; /* Slightly smaller for small screens */
+    height: 50%;
+  }
+
+  input[type='checkbox'].ios8-switch+label:after {
+    width: 40%; /* Smaller for small screens */
+    height: 80%;
+  }
 }
 
 input[type='checkbox'].ios8-switch+label:hover:after {
@@ -523,22 +569,33 @@ input[type='checkbox'].ios8-switch-sm+label {
   line-height: 1.3em;
 }
 
+/* Responsive styles for the small switch background (track) */
 input[type='checkbox'].ios8-switch-sm+label:before {
-  width: 25px;
-  /* x*5 */
-  height: 15px;
-  /* x*3 */
-  border-radius: 10px;
-  /* x*2 */
+  width: 8vw; /* Adjust width based on viewport */
+  height: 5vw; /* Adjust height based on viewport */
+  border-radius: 2.5vw; /* Circular shape for pill effect */
 }
 
+/* Responsive styles for the small switch thumb */
 input[type='checkbox'].ios8-switch-sm+label:after {
-  width: 15px;
-  /* x*3 */
-  height: 15px;
-  /* x*3 */
-  border-radius: 10px;
-  /* x*2 */
+  width: 5vw; /* Smaller width for the thumb */
+  height: 5vw; /* Match height of background */
+  border-radius: 2.5vw; /* Circular shape */
+}
+
+/* Media query for very small screens */
+@media (max-width: 600px) {
+  input[type='checkbox'].ios8-switch-sm+label:before {
+    width: 20px; /* Fixed width for better control on small screens */
+    height: 12px; /* Smaller height */
+    border-radius: 6px; /* Adjust border radius */
+  }
+
+  input[type='checkbox'].ios8-switch-sm+label:after {
+    width: 12px; /* Smaller thumb width */
+    height: 12px; /* Smaller thumb height */
+    border-radius: 6px; /* Match border radius */
+  }
 }
 
 input[type='checkbox'].ios8-switch-sm+label:hover:after {
@@ -562,22 +619,33 @@ input[type='checkbox'].ios8-switch-lg+label {
   line-height: 2.3em;
 }
 
+/* Responsive styles for the large switch background (track) */
 input[type='checkbox'].ios8-switch-lg+label:before {
-  width: 50px;
-  /* x*5 */
-  height: 30px;
-  /* x*3 */
-  border-radius: 20px;
-  /* x*2 */
+  width: 12vw; /* Adjust width based on viewport */
+  height: 7vw; /* Adjust height based on viewport */
+  border-radius: 3.5vw; /* Rounded corners based on size */
 }
 
+/* Responsive styles for the large switch thumb */
 input[type='checkbox'].ios8-switch-lg+label:after {
-  width: 30px;
-  /* x*3 */
-  height: 30px;
-  /* x*3 */
-  border-radius: 20px;
-  /* x*2 */
+  width: 7vw; /* Thumb width relative to viewport */
+  height: 7vw; /* Thumb height relative to viewport */
+  border-radius: 3.5vw; /* Rounded corners to match track */
+}
+
+/* Media query for very small screens */
+@media (max-width: 600px) {
+  input[type='checkbox'].ios8-switch-lg+label:before {
+    width: 45px; /* Smaller fixed width for control on mobile */
+    height: 25px; /* Adjusted height */
+    border-radius: 12px; /* Reduced border radius */
+  }
+
+  input[type='checkbox'].ios8-switch-lg+label:after {
+    width: 25px; /* Smaller thumb width */
+    height: 25px; /* Smaller thumb height */
+    border-radius: 12px; /* Adjust to match track */
+  }
 }
 
 input[type='checkbox'].ios8-switch-lg+label:hover:after {
@@ -783,9 +851,18 @@ iframe {
 
 #phone-airdrop-receive-content img {
   object-fit: cover;
-  height: 35px;
-  width: 35px;
-  margin-bottom: 10px;
+  width: 8vw; /* Scales with viewport width */
+  height: 8vw; /* Keeps a square aspect ratio */
+  margin-bottom: 2vw; /* Adjust margin with viewport */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  #phone-airdrop-receive-content img {
+    width: 30px; /* Fixed width for better control on mobile */
+    height: 30px; /* Fixed height to match width */
+    margin-bottom: 8px; /* Smaller bottom margin */
+  }
 }
 
 #phone-airdrop-receive header a {
@@ -950,14 +1027,23 @@ iframe {
 .phone-home-swipe::after {
   content: "";
   position: absolute;
-  width: 150px;
-  height: 5px;
+  width: 30vw; /* Responsive width based on viewport */
+  height: 1vh; /* Responsive height based on viewport */
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  opacity: 80%;
+  opacity: 0.8;
   background: white;
-  border-radius: 10px;
+  border-radius: 5vw; /* Border radius relative to width for a rounded look */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+  .phone-home-swipe::after {
+    width: 25vw; /* Slightly narrower for small screens */
+    height: 0.8vh; /* Adjusted height */
+    border-radius: 4vw; /* Adjusted border radius */
+  }
 }
 
 .lockScreen .phone-home-swipe {
@@ -1134,4 +1220,46 @@ iframe {
 
 .slide-cancel-box {
   color: white;
+}
+
+/* For small devices (phones, 600px and below) */
+@media (max-width: 600px) {
+  .phone-header {
+      padding: 1.5rem 2.5rem;
+  }
+
+  .phone-footer {
+      height: 40px;
+  }
+
+  .bottom-apps img {
+      height: 50px;
+      width: 50px;
+  }
+
+  /* Reduce padding, font sizes, and margins as needed */
+  #popup-actions-modal {
+      max-width: 90%;
+  }
+
+  .popup-actions-button {
+      font-size: 0.9em;
+  }
+}
+
+/* For medium devices (tablets, 600px to 900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .phone-header {
+      padding: 2rem 3rem;
+  }
+
+  .bottom-apps img {
+      height: 55px;
+      width: 55px;
+  }
+
+  /* Adjust any other elements as needed */
+  .popup-actions-button {
+      font-size: 1em;
+  }
 }
