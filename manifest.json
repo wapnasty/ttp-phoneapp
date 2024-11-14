@@ -1,0 +1,15 @@
+{
+  "name": "In-Game Phone",
+  "short_name": "Phone",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "description": "Control your in-game phone from your real phone",
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
